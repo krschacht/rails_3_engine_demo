@@ -1,3 +1,9 @@
 .cheese {
   color: red;
 }
+
+.red_border {
+  border: 2px solid red;
+  margin: 5px;
+  padding: 5px;
+}

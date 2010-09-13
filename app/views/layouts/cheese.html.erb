@@ -2,7 +2,10 @@
 <% content_for :content do %>
 
   <%= stylesheet_link_tag("cheese") %>
-  <%= yield %>
+  
+  <div class="red_border">
+    <%= yield %>
+  </div>
 
 <% end -%>
 

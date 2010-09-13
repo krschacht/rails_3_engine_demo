@@ -27,6 +27,8 @@ Lastly, test out packaging & shipping your engine as a gem. You'll need Jeweler 
 * sudo gem install jeweler
 * rake gemspec
 * rake build
-* rake install  (you have now installed your engine as a gem locally)
+* rake install  (you have now installed your engine as a gem locally, you can see it with: gem list)
 * [At this point if you wanted your demo app to use your installed gem, simply edit the Gemfile in your demo app and change your cheese line to this: ] gem 'cheese'
 * rake gemcutter:release  (this pushes your gem up to Gemcutter)
+
+Now you're ready to start customizing this engine for your own purposes. Do a global find in your engine directory and replace every instance of "cheese" / "Cheese" with your engine name. Likewise, rename every directory and file that's named "cheese" with your engine name. I should really automate this but I haven't figured out how to create a rake task that I can run from within the engine directory itself.
