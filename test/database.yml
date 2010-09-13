@@ -1,0 +1,4 @@
+mysql:
+  adapter: mysql
+  host: localhost
+  database: cheese_plugin_test
