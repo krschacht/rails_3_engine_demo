@@ -1,4 +1,32 @@
 == Overview
 
-Details...
+Here's how you get ready to create your first gem by using this platform:
 
+* git clone git@github.com:krschacht/rails_3_engine_demo.git
+* cd rails_3_engine_demo
+* [edit test/database.yml]
+* rake test  (this will initialize your test database and run the basic test suite)
+
+Now, create a plain rails app and set it up to use your engine:
+
+* rails demo_app_to_use_gem -d mysql
+* cd demo_app_to_use_gem
+* [edit config/database.yml]
+* [edit Gemfile, add line: ] gem 'cheese', :path => "../cheese"
+* rails generate cheese
+* [examine config/initializers/cheese.rb to see basic config parameters]
+
+You have now setup a empty rails app that utilizes your engine. To test out the functionality startup the demo app's webserver:
+
+* rake cheese:reports  (you're running a rake task that is included in the engine)
+* http://localhost:3000/cheese  (this is a controller included within the engine)
+
+Lastly, test out packaging & shipping your engine as a gem. You'll need Jeweler installed for this:
+
+* cd rails_3_engine_demo
+* sudo gem install jeweler
+* rake gemspec
+* rake build
+* rake install  (you have now installed your engine as a gem locally)
+* [At this point if you wanted your demo app to use your installed gem, simply edit the Gemfile in your demo app and change your cheese line to this: ] gem 'cheese'
+* rake gemcutter:release  (this pushes your gem up to Gemcutter)

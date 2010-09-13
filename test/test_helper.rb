@@ -17,7 +17,7 @@ def load_schema
   config = YAML::load( IO.read( File.dirname(__FILE__) + '/database.yml') )
 
   # Manually initialize the database
-  conn = Mysql.real_connect( config['mysql']['host'], config['mysql']['login'], config['mysql']['password'] )
+  conn = Mysql.real_connect( config['mysql']['host'], config['mysql']['username'], config['mysql']['password'] )
   conn.query( "CREATE DATABASE IF NOT EXISTS #{config['mysql']['database']}" )
   
   ActiveRecord::Base.establish_connection( config['mysql'] )
