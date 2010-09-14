@@ -13,7 +13,7 @@ begin
     gem.summary = "Description of your gem"
     gem.email = "you@email.com"
     gem.authors = ["Your Name"]
-    gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*"]
+    gem.files = Dir["{lib}/**/*", "{app}/**/*", "{public}/**/*", "{config}/**/*"]
   end
   Jeweler::GemcutterTasks.new
 rescue

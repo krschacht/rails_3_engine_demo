@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{cheese}
-  s.version = "0.0.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Your Name"]
-  s.date = %q{2010-09-12}
+  s.date = %q{2010-09-13}
   s.email = %q{you@email.com}
   s.extra_rdoc_files = [
     "README.rdoc"
@@ -31,7 +31,9 @@ Gem::Specification.new do |s|
      "lib/rails/generators/cheese/templates/initializer.rb",
      "lib/rails/generators/cheese/templates/migration.rb",
      "lib/rails/generators/cheese/templates/schema.rb",
-     "lib/rails/railties/tasks.rake"
+     "lib/rails/railties/tasks.rake",
+     "public/images/cheese.jpg",
+     "public/stylesheets/cheese.css"
   ]
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]

@@ -23,8 +23,9 @@ module Cheese
     end
     
     initializer "static assets" do |app|
-      puts "HELLO"
-      app.middleware.use ::ActionDispatch::Static, "#{root}/public"      
+      app.middleware.use ::ActionDispatch::Static, "#{root}/public"
+      # puts "special loading 2..."
+      # app.middleware.insert_after ActionDispatch::Static, ActionDispatch::Static, "#{root}/public"
     end
     
   end
