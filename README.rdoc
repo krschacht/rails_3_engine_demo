@@ -1,34 +1,53 @@
 == Overview
 
-Here's how you get ready to create your first gem by using this platform:
+One of the things I was most looking forward to in rails 3 was the plugin / engine architecture. Recently, I sat down to figure out how to create my first engine and package it up as a gem and it took me awhile of time just to get the structure of the engine setup. It's missing a lot of the "rails" you get in a normal rails app.
+
+In it's simplest form engines are quite easy, however for a full-featured engine (such as creating a forum) there are a lot of extras that you're going to want. These are the things I spent time figuring out that I've packaged up into an easy starting point:
+
+* Namespacing models & controllers so they don't collide with those in the main app
+* Creating a global layout within your engine that gets nested within your application layout
+* Generating migrations from your engine
+* Creating an "acts_as_[plugin]" declaration for use inside your main app's models
+* Easy plugin configuration file editable from main app directory
+* Rake tasks within engine
+* Writing tests for models complete with fixtures
+* Serving static assets within engine
+* Packaging and distributing as a gem
+* Code is here - I've created an engine stub that has all the things setup for you already. I want to see a lot more rails 3 engines get created, I hope this helps! I'd love to hear feedback from you if you try it out.
+
+Here’s how you get ready to create your first gem by using this starting point:
 
 * git clone git@github.com:krschacht/rails_3_engine_demo.git
 * cd rails_3_engine_demo
 * [edit test/database.yml]
-* rake test  (this will initialize your test database and run the basic test suite)
+* rake test (this will initialize your test database and run the basic test suite)
 
-Now, create a plain rails app and set it up to use your engine:
+Now, create a plain rails app and set it up to use your engine. FYI: even though the engine's directory is 'rails_3_engine_demo', internally the engine is named 'cheese'
 
-* rails demo_app_to_use_gem -d mysql
+* cd .. [ this is to take you outside the 'rails_3_engine_demo' directory that was created above' ]
+* rails new demo_app_to_use_gem -d mysql
 * cd demo_app_to_use_gem
 * [edit config/database.yml]
-* [edit Gemfile, add line: ] gem 'cheese', :path => "../cheese"
+* [edit Gemfile, add line: ] gem ‘cheese’, :path => "../rails_3_engine_demo"
 * rails generate cheese
 * [examine config/initializers/cheese.rb to see basic config parameters]
+* rails db:create
+* rails db:migrate (one of the migrations that you'll see run came from the engine)
 
-You have now setup a empty rails app that utilizes your engine. To test out the functionality startup the demo app's webserver:
+You have now setup a empty rails app that utilizes your engine. To test out the functionality, startup the demo app’s webserver:
 
-* rake cheese:reports  (you're running a rake task that is included in the engine)
-* http://localhost:3000/cheese  (this is a controller included within the engine)
+* rails server
+* Then visit: http://localhost:3000/cheese (this is a controller included within the engine)
+* rake cheese:reports (this is a a rake task that is included inside the engine)
 
-Lastly, test out packaging & shipping your engine as a gem. You'll need Jeweler installed for this:
+Lastly, let's package up your engine as a real gem. You’ll need Jeweler installed for this:
 
 * cd rails_3_engine_demo
 * sudo gem install jeweler
 * rake gemspec
 * rake build
-* rake install  (you have now installed your engine as a gem locally, you can see it with: gem list)
-* [At this point if you wanted your demo app to use your installed gem, simply edit the Gemfile in your demo app and change your cheese line to this: ] gem 'cheese'
-* rake gemcutter:release  (this pushes your gem up to Gemcutter)
+* rake install (you have now installed your engine as a gem locally)
+* [ At this point if you wanted your demo app to use your installed gem, edit the Gemfile in your demo app and remove the 'path' option from your gem line. It should look like this: ] gem ‘cheese’
+* rake gemcutter:release (this pushes your gem up to Gemcutter, a public gem repository)
 
-Now you're ready to start customizing this engine for your own purposes. Do a global find in your engine directory and replace every instance of "cheese" / "Cheese" with your engine name. Likewise, rename every directory and file that's named "cheese" with your engine name. I should really automate this but I haven't figured out how to create a rake task that I can run from within the engine directory itself.
+Now you’re ready to start customizing this engine for your own purposes. Do a global find in your engine directory and replace every instance of "cheese" and "Cheese" with your engine name (be sure to preserve capitalization). Likewise, rename every directory and file that’s named "cheese" with your engine name. I should really automate this but I haven’t figured out how to create a rake task that I can run from within the engine directory itself.
