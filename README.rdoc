@@ -31,8 +31,8 @@ Now, create a plain rails app and set it up to use your engine. FYI: even though
 * [edit Gemfile, add line: ] gem ‘cheese’, :path => "../rails_3_engine_demo"
 * rails generate cheese
 * [examine config/initializers/cheese.rb to see basic config parameters]
-* rails db:create
-* rails db:migrate (one of the migrations that you'll see run came from the engine)
+* rake db:create
+* rake db:migrate (one of the migrations that you'll see run came from the engine)
 
 You have now setup a empty rails app that utilizes your engine. To test out the functionality, startup the demo app’s webserver:
 
