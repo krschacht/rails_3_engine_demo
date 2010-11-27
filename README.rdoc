@@ -1,3 +1,10 @@
+== Fork Notice
+
+This fork was created as a reply to http://keithschacht.com/creating-a-rails-3-engine-plugin-gem/ to show howto extend ApplicationController from inside an Engine (see comment Nr. 9 and 10). 
+
+Thanks for your initial work, Keith, it helped me to get started with the whole engine stuff.
+
+
 == Overview
 
 One of the things I was most looking forward to in rails 3 was the plugin / engine architecture. Recently, I sat down to figure out how to create my first engine and package it up as a gem and it took me awhile of time just to get the structure of the engine setup. It's missing a lot of the "rails" you get in a normal rails app.
