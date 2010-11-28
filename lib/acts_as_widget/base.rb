@@ -35,22 +35,10 @@ module Cheese
     module Controller
       def self.included(klass)
         klass.class_eval do
-          self.send :extend, Cheese::ActsAsWidget::Controller::ClassMethods
-        end
-      end
-
-      module ClassMethods
-        ## this has to be wrapped inside a method or else it'll bark on "undefined method `before_filter'"
-        ## still trying to understand in which order which files need to be required to work around this
-        ## (since 2 frakin' days already...)
-        ## alternatively one can put the before_filter call into the real application_controller, which
-        ## removes the need for a separate acts_as_... helper
-        def acts_as_widget_controller
           self.send :include, Cheese::ActsAsWidget::Controller::InstanceMethods
           before_filter :test_controller_instance_method
         end
       end
-
 
       module InstanceMethods
         def test_controller_instance_method
