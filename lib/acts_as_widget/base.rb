@@ -33,11 +33,11 @@ module Cheese
 
     ## Define ControllerMethods
     module Controller
-      def self.included(klass)
-        klass.class_eval do
-          self.send :include, Cheese::ActsAsWidget::Controller::InstanceMethods
-          before_filter :test_controller_instance_method
-        end
+			## this one manages the usual self.included, klass_eval stuff
+      extend ActiveSupport::Concern
+
+      included do
+        before_filter :test_controller_instance_method
       end
 
       module InstanceMethods
