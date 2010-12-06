@@ -1,10 +1,3 @@
-== Fork Notice
-
-This fork was created as a reply to http://keithschacht.com/creating-a-rails-3-engine-plugin-gem/ to show howto extend ApplicationController from inside an Engine (see comment Nr. 9 and 10). 
-
-Thanks for your initial work, Keith, it helped me to get started with the whole engine stuff.
-
-
 == Overview
 
 One of the things I was most looking forward to in rails 3 was the plugin / engine architecture. Recently, I sat down to figure out how to create my first engine and package it up as a gem and it took me awhile of time just to get the structure of the engine setup. It's missing a lot of the "rails" you get in a normal rails app.
@@ -45,6 +38,7 @@ You have now setup a empty rails app that utilizes your engine. To test out the 
 
 * rails server
 * Then visit: http://localhost:3000/cheese (this is a controller included within the engine)
+* Watch the server logs as you're viewing this page and you'll see some output which is coming from an application before_filter which is executing from inside the engine (in lib/application_controller.rb)
 * rake cheese:reports (this is a a rake task that is included inside the engine)
 
 Lastly, let's package up your engine as a real gem. You’ll need Jeweler installed for this:
@@ -58,3 +52,5 @@ Lastly, let's package up your engine as a real gem. You’ll need Jeweler instal
 * rake gemcutter:release (this pushes your gem up to Gemcutter, a public gem repository)
 
 Now you’re ready to start customizing this engine for your own purposes. Do a global find in your engine directory and replace every instance of "cheese" and "Cheese" with your engine name (be sure to preserve capitalization). Likewise, rename every directory and file that’s named "cheese" with your engine name. I should really automate this but I haven’t figured out how to create a rake task that I can run from within the engine directory itself.
+
+P.S. Special thanks to Chrispy for helping figure out the application_controller includes!

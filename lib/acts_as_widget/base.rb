@@ -30,29 +30,7 @@ module Cheese
       end # InstanceMethods      
     end
 
-
-    ## Define ControllerMethods
-    module Controller
-			## this one manages the usual self.included, klass_eval stuff
-      extend ActiveSupport::Concern
-
-      included do
-        before_filter :test_controller_instance_method
-      end
-
-      module InstanceMethods
-        def test_controller_instance_method
-          puts "Calling an example application_controller instance_method"
-        end
-      end
-
-    end
-
   end
-
 end
 
 ::ActiveRecord::Base.send :include, Cheese::ActsAsWidget::Base
-
-## this one includes the given module into ActionController 
-::ActionController::Base.send :include, Cheese::ActsAsWidget::Controller
