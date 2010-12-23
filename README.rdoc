@@ -17,7 +17,7 @@ In it's simplest form engines are quite easy, however for a full-featured engine
 
 Here’s how you get ready to create your first gem by using this starting point:
 
-* git clone git@github.com:krschacht/rails_3_engine_demo.git
+* git clone http://github.com/krschacht/rails_3_engine_demo.git
 * cd rails_3_engine_demo
 * [edit test/database.yml]
 * rake test (this will initialize your test database and run the basic test suite)
@@ -39,7 +39,7 @@ You have now setup a empty rails app that utilizes your engine. To test out the 
 * rails server
 * Then visit: http://localhost:3000/cheese (this is a controller included within the engine)
 * Watch the server logs as you're viewing this page and you'll see some output which is coming from an application before_filter which is executing from inside the engine (in lib/application_controller.rb)
-* rake cheese:reports (this is a a rake task that is included inside the engine)
+* rake cheese:report (this is a a rake task that is included inside the engine)
 
 Lastly, let's package up your engine as a real gem. You’ll need Jeweler installed for this:
 
