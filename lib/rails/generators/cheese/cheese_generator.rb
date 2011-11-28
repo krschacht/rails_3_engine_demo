@@ -57,13 +57,14 @@ class CheeseGenerator < Rails::Generators::Base
         
         layout.gsub!(/<%=[ ]+yield[ ]+%>/, '<%= content_for?(:content) ? yield(:content) : yield %>')
 
-        tmp = File.open "tmp/~application.html.erb", "w"
+        tmp_real_path = File.expand_path("tmp/~application.html.erb")
+
+        tmp = File.open tmp_real_path, "w"
         tmp.write layout; tmp.close
 
         remove_file 'app/views/layouts/application.html.erb'
-        copy_file '../../../tmp/~application.html.erb', 
-                  'app/views/layouts/application.html.erb'
-        remove_file 'tmp/~application.html.erb'
+        copy_file tmp_real_path, 'app/views/layouts/application.html.erb'
+        remove_file tmp_real_path
       end
     elsif layout =~ /<%=[ ]+content_for\?\(:content\) \? yield\(:content\) : yield[ ]+%>/
       puts "    \e[1m\e[33mskipping\e[0m  layouts/application.html.erb modification is already done."
